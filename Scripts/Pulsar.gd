@@ -1,6 +1,6 @@
 extends Control
 
-@onready var driver:MusicDriver = get_tree().get_first_node_in_group("MusicDriver")
+@onready var driver := Global.Driver
 @onready var base_color = modulate.srgb_to_linear()
 
 @export var intensity := 1.5

@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://b51beu8pqoy4c" path="res://Assets/Tracks/placeholder.mp3" id="1_idj7w"]
 [ext_resource type="Script" uid="uid://cohk6yrj6lh7" path="res://Scripts/Pulsar.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://dee1yf5of8eyj" path="res://Scripts/MusicDriver.gd" id="2_kln2b"]
+[ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="2_rgh2o"]
 
 [sub_resource type="Gradient" id="Gradient_c1w88"]
 offsets = PackedFloat32Array(0.8820755, 1)
@@ -36,10 +37,10 @@ background_mode = 3
 glow_enabled = true
 glow_bloom = 0.1
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rgh2o"]
-stream_count = 1
-stream_0/stream = ExtResource("1_idj7w")
-stream_0/volume = 0.0
+[sub_resource type="Resource" id="Resource_rgh2o"]
+script = ExtResource("2_rgh2o")
+track = ExtResource("1_idj7w")
+metadata/_custom_type_script = "uid://bkbxjho7mbjxi"
 
 [node name="Main" type="Node" unique_id=1573191447]
 
@@ -69,6 +70,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_c1w88")
 script = ExtResource("1_kln2b")
+intensity = null
 
 [node name="Panel2" type="Panel" parent="HBoxContainer" unique_id=1148414150]
 modulate = Color(2.03, 2.03, 2.03, 1)
@@ -82,6 +84,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_c1w88")
 script = ExtResource("1_kln2b")
+intensity = null
 
 [node name="Panel3" type="Panel" parent="HBoxContainer" unique_id=2058895396]
 modulate = Color(2.03, 2.03, 2.03, 1)
@@ -95,6 +98,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_c1w88")
 script = ExtResource("1_kln2b")
+intensity = null
 
 [node name="Label" type="Label" parent="." unique_id=120064453]
 modulate = Color(1.286, 1.286, 1.286, 1)
@@ -168,6 +172,7 @@ size_flags_horizontal = 3
 environment = SubResource("Environment_r150o")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2135165896 groups=["MusicDriver"]]
-stream = SubResource("AudioStreamSynchronized_rgh2o")
 autoplay = true
 script = ExtResource("2_kln2b")
+charter = Array[ExtResource("2_rgh2o")]([SubResource("Resource_rgh2o")])
+state = 9
