@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://4pq3hesq8ipx"]
+
+[ext_resource type="FontFile" uid="uid://dnob11taru6t1" path="res://Assets/Fonts/montserrat.black.otf" id="1_xxred"]
+
+[resource]
+Label/fonts/font = ExtResource("1_xxred")
