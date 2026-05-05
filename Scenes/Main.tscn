@@ -175,4 +175,5 @@ environment = SubResource("Environment_r150o")
 autoplay = true
 script = ExtResource("2_kln2b")
 charter = Array[ExtResource("2_rgh2o")]([SubResource("Resource_rgh2o")])
-state = 9
+state = 2185
+transition_beats = 4
