@@ -1,5 +1,9 @@
+@tool
 class_name Chart extends Resource
 ## Stores information about a track's chart.
+
+@export_tool_button("Load From String") var lfs_button := lfs
+@export_multiline() var s:String
 
 ## The track this chart is for.
 @export var track:AudioStream
@@ -11,21 +15,5 @@ class_name Chart extends Resource
 @export var hits:PackedInt64Array
 @export var holds:PackedInt64Array
 
-## Reading bits from the packed array.
-#print("PACKING BYTE ARRAY")
-#var ba := PackedInt64Array([-1])
-#
-# Each int
-#for i in range(ba.size()):
-	#
-	#print("BIT ", i, " -> ", ba.get(i))
-	#
-	#var string := ""
-	#var index := 1
-	# Each bit in the int
-	#for j in range(63):
-		#string += str(clamp(ba.get(i) & index, 0, 1))
-		#
-		#index *= 2
-	#print(string)
-#pass
+func lfs():
+	pass

@@ -7,5 +7,5 @@ extends Control
 
 func _process(_delta:float) -> void:
 	
-	# Next, multiply it by your intensity
-	modulate = lerp(modulate, (base_color * lerp(1.0, intensity, 1.0 - driver.pulse)).linear_to_srgb(), 0.4)
+	var pulse:float = driver.beat - floor(driver.beat)
+	modulate = lerp(modulate, (base_color * lerp(1.0, intensity, 1.0 - pulse)).linear_to_srgb(), 0.4)

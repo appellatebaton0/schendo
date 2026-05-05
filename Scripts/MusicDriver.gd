@@ -1,12 +1,11 @@
 class_name MusicDriver extends AudioStreamPlayer
-## Tracks the current beat, and manages the transitions of tracks.
+## Tracks the beat, and manages the transitions of tracks.
 
 @export var charter:Array[Chart]
 
 var bpm:float
 
 var beat := 0.0
-var pulse := 0.0
 
 ## The currently active tracks.
 @export_flags_2d_render var state:int : set = set_state
@@ -69,4 +68,5 @@ func set_state(to:int):
 	
 	transition_start_beat = ceil(beat)
 	
+	## Update the state
 	state = to
