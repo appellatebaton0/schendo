@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bs652sdoc02kd"]
+
+[ext_resource type="Script" uid="uid://c3qucn8dhyqy4" path="res://Scripts/ChartEditor.gd" id="1_54gmp"]
+[ext_resource type="AudioStream" uid="uid://b51beu8pqoy4c" path="res://Assets/Tracks/placeholder.mp3" id="1_m3rxd"]
+[ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="3_4qbil"]
+
+[sub_resource type="Resource" id="Resource_skev3"]
+script = ExtResource("3_4qbil")
+hits = PackedInt64Array(4, 0, 4611686018427387904)
+holds = PackedInt64Array(552, 0, 0)
+metadata/_custom_type_script = "uid://bkbxjho7mbjxi"
+
+[node name="Node" type="AudioStreamPlayer2D" unique_id=2128923198 node_paths=PackedStringArray("hit_parent", "hold_parent")]
+stream = ExtResource("1_m3rxd")
+script = ExtResource("1_54gmp")
+chart = SubResource("Resource_skev3")
+hit_parent = NodePath("Hits")
+hold_parent = NodePath("Holds")
+beat = 2.454
+
+[node name="Hits" type="Node2D" parent="." unique_id=909125923]
+
+[node name="Node2D" type="Node2D" parent="Hits" unique_id=1993902824]
+
+[node name="Node2D2" type="Node2D" parent="Hits" unique_id=967460021]
+position = Vector2(12, 0)
+
+[node name="Node2D3" type="Node2D" parent="Hits" unique_id=83793128]
+position = Vector2(764, 0)
+
+[node name="Holds" type="Node2D" parent="." unique_id=1348761155]
+position = Vector2(0, 8)
+
+[node name="Node2D" type="Node2D" parent="Holds" unique_id=804635039]
+
+[node name="Node2D2" type="Node2D" parent="Holds" unique_id=1413657455]
+position = Vector2(16, 0)
+
+[node name="Node2D3" type="Node2D" parent="Holds" unique_id=867718902]
+position = Vector2(24, 0)
+
+[node name="Node2D4" type="Node2D" parent="Holds" unique_id=315872522]
+position = Vector2(40, 0)

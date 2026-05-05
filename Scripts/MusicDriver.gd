@@ -61,14 +61,6 @@ func _process(_delta: float) -> void:
 					untransitioned ^= index
 			
 			index *= 2
-	
-	## Every half beat.
-	if floor(beat * 2) / 2 != last_beat:
-		last_beat = floor(beat * 2) / 2
-		print(last_beat)
-
-var last_beat := 0.0
-var string := ""
 
 func set_state(to:int):
 	
