@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cohk6yrj6lh7" path="res://Scripts/Pulsar.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://dee1yf5of8eyj" path="res://Scripts/MusicDriver.gd" id="2_kln2b"]
 [ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="2_rgh2o"]
+[ext_resource type="Script" uid="uid://b8ft1gav4yx2c" path="res://Scripts/Lane.gd" id="2_v1gob"]
+[ext_resource type="AudioStream" uid="uid://bggl8v1mmt0u1" path="res://Assets/SFX/Hit4.wav" id="3_v1gob"]
 
 [sub_resource type="Gradient" id="Gradient_c1w88"]
 offsets = PackedFloat32Array(0.8820755, 1)
@@ -136,9 +138,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LeftLane" type="Control" parent="HBoxContainer2" unique_id=234367654]
+[node name="LeftLane" type="Control" parent="HBoxContainer2" unique_id=234367654 node_paths=PackedStringArray("sfx")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+script = ExtResource("2_v1gob")
+input_name = &"L"
+sfx = NodePath("AudioStreamPlayer")
 
 [node name="Panel" type="Panel" parent="HBoxContainer2/LeftLane" unique_id=2013508628]
 modulate = Color(0.871, 1.37, 1.508, 1)
@@ -157,6 +162,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c1w88")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer2/LeftLane" unique_id=104625076]
+stream = ExtResource("3_v1gob")
+
 [node name="Control2" type="Control" parent="HBoxContainer2" unique_id=48929469]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -164,6 +172,9 @@ size_flags_horizontal = 3
 [node name="RightLane" type="Control" parent="HBoxContainer2" unique_id=1821997526]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+script = ExtResource("2_v1gob")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer2/RightLane" unique_id=1915339764]
 
 [node name="Control3" type="Control" parent="HBoxContainer2" unique_id=231167542]
 layout_mode = 2
@@ -173,9 +184,11 @@ size_flags_horizontal = 3
 environment = SubResource("Environment_r150o")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2135165896 groups=["MusicDriver"]]
+volume_db = -1.0
 autoplay = true
 script = ExtResource("2_kln2b")
 charter = Array[ExtResource("2_rgh2o")]([SubResource("Resource_rgh2o")])
+state = 129
 transition_beats = 4
 
 [node name="Recorder" type="Node" parent="." unique_id=438531267]

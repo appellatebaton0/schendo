@@ -7,7 +7,11 @@
 @export var chart:Chart
 
 @export var hit_parent:Node2D
+@export var has_hit:Dictionary[Node, bool]
 @export var hold_parent:Node2D
+
+@export var hit_sfx:AudioStreamPlayer2D
+@export var hold_sfx:AudioStreamPlayer2D
 
 ## The position of the beat.
 @export var beat := 0.0
@@ -21,6 +25,15 @@ func _process(delta: float) -> void:
 	
 	if playing:
 		beat = ((get_playback_position() + AudioServer.get_time_since_last_mix()) * stream.bpm / 60)
+		
+		for node in hit_parent.get_children() + hold_parent.get_children():
+			if not has_hit.has(node) or beat < (node.position.x / 8) - delta: has_hit[node] = false
+		
+			if beat >= (node.position.x / 8) - delta and not has_hit[node]:
+				hit_sfx.play()
+				
+				has_hit[node] = true
+		
 	was_playing = playing
 
 func _draw():
@@ -32,7 +45,10 @@ func _draw():
 	draw_line(Vector2(width, 11), Vector2(width, -3), Color.RED, 2)
 	
 	for hit_node in hit_parent.get_children(): if hit_node is Node2D:
-		draw_circle(hit_node.global_position - position, 0.7, Color.AQUA)
+		draw_circle(hit_node.global_position - position, 0.7, Color.AQUA if beat < hit_node.position.x / 8 else Color.ROYAL_BLUE)
+		
+		if not has_hit.has(hit_node) or beat < hit_node.position.x / 8: has_hit[hit_node] = false
+		
 	
 	var partner:Node2D = null
 	for hold_node in hold_parent.get_children(): if hold_node is Node2D:
@@ -42,6 +58,8 @@ func _draw():
 			draw_line(partner.global_position - position, hold_node.global_position - position, Color.GREEN, 0.5)
 			partner = null
 		draw_circle(hold_node.global_position - position, 0.7, Color.GREEN)
+		
+		
 	
 	draw_line(Vector2(beat * 8, -4), Vector2(beat * 8, 12), Color.WHITE, 0.4)
 

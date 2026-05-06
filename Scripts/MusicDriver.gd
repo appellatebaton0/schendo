@@ -44,11 +44,13 @@ func _ready() -> void:
 	play()
 
 func _process(_delta: float) -> void:
-	beat = (get_playback_position() +  AudioServer.get_time_since_last_mix()) * bpm / 60
+	
+	beat = (get_playback_position() +  AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()) * bpm / 60
 	
 	## If there's a waiting buffer, attempt to clear it.
 	if state_buffer != state:
 		state = state_buffer
+	print(state, ' / ',state_buffer)
 	
 	## Manage the transition of track volumes.
 	if stream is AudioStreamSynchronized:
@@ -67,10 +69,6 @@ func _process(_delta: float) -> void:
 					untransitioned ^= index
 			
 			index *= 2
-	
-	
-	
-	if Input.is_action_just_pressed("L"): state += 1
 
 func set_state(to:int): 
 	if floor(beat) > transition_start_beat and transition_start_beat >= 0:
