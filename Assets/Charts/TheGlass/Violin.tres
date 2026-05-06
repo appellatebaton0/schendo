@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Chart" format=3 uid="uid://dymrbjilrqbxk"]
+
+[ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="1_3qwlr"]
+[ext_resource type="AudioStream" uid="uid://evweeft6haai" path="res://Assets/Tracks/TheGlass/Violin.ogg" id="2_3qwlr"]
+
+[resource]
+script = ExtResource("1_3qwlr")
+track = ExtResource("2_3qwlr")
+metadata/_custom_type_script = "uid://bkbxjho7mbjxi"

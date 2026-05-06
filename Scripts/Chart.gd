@@ -2,9 +2,6 @@
 class_name Chart extends Resource
 ## Stores information about a track's chart.
 
-@export_tool_button("Load From String") var lfs_button := lfs
-@export_multiline() var s:String
-
 ## The track this chart is for.
 @export var track:AudioStream
 
@@ -14,6 +11,3 @@ class_name Chart extends Resource
 
 @export var hits:PackedInt64Array
 @export var holds:PackedInt64Array
-
-func lfs():
-	pass

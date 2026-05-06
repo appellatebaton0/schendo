@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cohk6yrj6lh7" path="res://Scripts/Pulsar.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://dee1yf5of8eyj" path="res://Scripts/MusicDriver.gd" id="2_kln2b"]
 [ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="2_rgh2o"]
-[ext_resource type="Script" uid="uid://bb0vnecxraoou" path="res://Scripts/ChartRecorder.gd" id="5_pbw6q"]
 
 [sub_resource type="Gradient" id="Gradient_c1w88"]
 offsets = PackedFloat32Array(0.8820755, 1)
@@ -41,6 +40,7 @@ glow_bloom = 0.1
 [sub_resource type="Resource" id="Resource_rgh2o"]
 script = ExtResource("2_rgh2o")
 track = ExtResource("1_idj7w")
+hits = PackedInt64Array(1, 3, 0)
 metadata/_custom_type_script = "uid://bkbxjho7mbjxi"
 
 [node name="Main" type="Node" unique_id=1573191447]
@@ -176,8 +176,6 @@ environment = SubResource("Environment_r150o")
 autoplay = true
 script = ExtResource("2_kln2b")
 charter = Array[ExtResource("2_rgh2o")]([SubResource("Resource_rgh2o")])
-state = 2185
 transition_beats = 4
 
 [node name="Recorder" type="Node" parent="." unique_id=438531267]
-script = ExtResource("5_pbw6q")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Chart" format=3 uid="uid://c0a8ptn4e41l2"]
+
+[ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="1_cx21c"]
+[ext_resource type="AudioStream" uid="uid://cteb3wgt6kaeu" path="res://Assets/Tracks/TheGlass/PercussionA.ogg" id="2_cx21c"]
+
+[resource]
+script = ExtResource("1_cx21c")
+track = ExtResource("2_cx21c")
+metadata/_custom_type_script = "uid://bkbxjho7mbjxi"

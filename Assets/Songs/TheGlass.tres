@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Song" format=3 uid="uid://2n7lawq68cyf"]
+
+[ext_resource type="Script" uid="uid://bkbxjho7mbjxi" path="res://Scripts/Chart.gd" id="1_ccv5s"]
+[ext_resource type="Script" uid="uid://diy66owm0bny" path="res://Scripts/Song.gd" id="1_thqif"]
+[ext_resource type="Resource" uid="uid://b15sn17btjbma" path="res://Assets/Charts/TheGlass/Bass.tres" id="2_tyq2f"]
+[ext_resource type="Resource" uid="uid://brvo31pc5s6m8" path="res://Assets/Charts/TheGlass/Piano.tres" id="3_i6r3f"]
+[ext_resource type="Resource" uid="uid://dymrbjilrqbxk" path="res://Assets/Charts/TheGlass/Violin.tres" id="4_ykgl8"]
+[ext_resource type="Resource" uid="uid://r0pp6t04abe" path="res://Assets/Charts/TheGlass/Vocals.tres" id="5_h5hl7"]
+[ext_resource type="Resource" uid="uid://b0apnw1bnbl6i" path="res://Assets/Charts/TheGlass/AcouGuitar.tres" id="6_in50w"]
+[ext_resource type="Resource" uid="uid://vrdfniah3lgj" path="res://Assets/Charts/TheGlass/ElecGuitar.tres" id="7_jlo8s"]
+[ext_resource type="Resource" uid="uid://c0a8ptn4e41l2" path="res://Assets/Charts/TheGlass/PercussionA.tres" id="8_stkpx"]
+[ext_resource type="Resource" uid="uid://bjp7jomhqw47h" path="res://Assets/Charts/TheGlass/PercussionB.tres" id="9_46taq"]
+
+[resource]
+script = ExtResource("1_thqif")
+charts = Array[ExtResource("1_ccv5s")]([ExtResource("2_tyq2f"), ExtResource("3_i6r3f"), ExtResource("4_ykgl8"), ExtResource("5_h5hl7"), ExtResource("6_in50w"), ExtResource("7_jlo8s"), ExtResource("8_stkpx"), ExtResource("9_46taq")])
+metadata/_custom_type_script = "uid://diy66owm0bny"

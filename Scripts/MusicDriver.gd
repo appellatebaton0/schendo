@@ -5,14 +5,20 @@ class_name MusicDriver extends AudioStreamPlayer
 
 var bpm:float
 
-var beat := 0.0
+var beat_delta:float
+var beat := 0.0:
+	set(to):
+		beat_delta = abs(to - beat)
+		beat = to
 
 ## The currently active tracks.
-@export_flags_2d_render var state:int : set = set_state
+@export_flags_2d_render var state:int: set = set_state
 ## The tracks that are in the middle of transitioning.
 var untransitioned:int = 0
-## The beat the transition starts from.
-var transition_start_beat:int = 0
+
+## Used to buffer the state change until the start of a beat.
+var transition_start_beat := -1
+var state_buffer:int
 
 ## How many beats it takes to fade in or out a track.
 @export var transition_beats := 8
@@ -22,14 +28,14 @@ func _ready() -> void:
 	## Create the stream.
 	var new_stream := AudioStreamSynchronized.new()
 	
-	new_stream.set_stream_count(len(charter))
+	new_stream.set_stream_count(len(Global.song.charts))
 	
-	for i in range(len(charter)):
-		new_stream.set_sync_stream(i, charter[i].track)
+	for i in range(len(Global.song.charts)):
+		new_stream.set_sync_stream(i, Global.song.charts[i].track)
 		new_stream.set_sync_stream_volume(i, linear_to_db(0))
 		
 		if not bpm:
-			var beats_per = charter[i].track.get("bpm")
+			var beats_per = Global.song.charts[i].track.get("bpm")
 			if beats_per:
 				bpm = beats_per
 	
@@ -39,18 +45,19 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	beat = (get_playback_position() +  AudioServer.get_time_since_last_mix()) * bpm / 60
-	pulse = beat - floor(beat)
 	
+	## If there's a waiting buffer, attempt to clear it.
+	if state_buffer != state:
+		state = state_buffer
+	
+	## Manage the transition of track volumes.
 	if stream is AudioStreamSynchronized:
 		var index := 1
-		
-		# How close to the end of the transition (0.0 - 1.0) we are.
-		var transition_time := (beat - transition_start_beat) / transition_beats
 		
 		for i in range(31): 
 			if untransitioned & index:
 				
-				var new_value:float = clamp(transition_time if state & index else 1 - transition_time, 0., 1.)
+				var new_value:float = move_toward(db_to_linear(stream.get_sync_stream_volume(i)), float((state & index) >> i), beat_delta / transition_beats)
 				
 				stream.set_sync_stream_volume(i, linear_to_db(new_value))
 				
@@ -60,13 +67,24 @@ func _process(_delta: float) -> void:
 					untransitioned ^= index
 			
 			index *= 2
+	
+	
+	
+	if Input.is_action_just_pressed("L"): state += 1
 
-func set_state(to:int):
+func set_state(to:int): 
+	if floor(beat) > transition_start_beat and transition_start_beat >= 0:
+		## Note which bits have changed, since they'll need to be transitioned.
+		## Keep on any that still aren't done.
+		untransitioned = untransitioned | (state ^ to)
+		
+		## Update the state
+		state = to
+		
+		transition_start_beat = -1
+	else:
+		if transition_start_beat == -1:
+			transition_start_beat = ceil(beat)
+		state_buffer = to
 	
-	## Note which bits have changed, since they'll need to be transitioned.
-	untransitioned = state ^ to
 	
-	transition_start_beat = ceil(beat)
-	
-	## Update the state
-	state = to
